@@ -6,15 +6,13 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import "./connection.js";
 import mongoose from "mongoose";
+import {PORT,apiKey} from "./config.js";
 const app = express();
-
-import dotenv from 'dotenv';
-dotenv.config();
+const apiKeyAsString = String(apiKey);
 //connection 
-const apiKey = "mongodb+srv://HEATONBOB:12345@heatonbob.apqk9we.mongodb.net/?retryWrites=true&w=majority";
 
 mongoose.set("strictQuery", true);
-mongoose.connect(apiKey, { useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(apiKeyAsString, { useNewUrlParser: true, useUnifiedTopology: true})
 .then(() => console.log("Connected to the database."))
 .catch(err => console.log("Not connected..."));
 
@@ -24,10 +22,10 @@ app.use(bodyParser.json( { extended: true } ));
 app.use(bodyParser.urlencoded ( { extended: true } ));
 
 
-app.get('/',(req,res)=> res.json({msg:"helloasdasd"}));
+app.get('/',(req,res)=> res.json({msg:"helloasdasd"+apiKeyAsString}));
 
 
-app.listen(2000);
+app.listen(PORT,{PORT});
 console.log("Listening...");
 
 
