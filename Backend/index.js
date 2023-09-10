@@ -9,6 +9,7 @@ import mongoose from "mongoose";
 import {PORT,apiKey} from "./config.js";
 const app = express();
 const apiKeyAsString = String(apiKey);
+import router from "./routes/signup.js";
 //connection 
 
 mongoose.set("strictQuery", true);
@@ -22,8 +23,7 @@ app.use(bodyParser.json( { extended: true } ));
 app.use(bodyParser.urlencoded ( { extended: true } ));
 
 
-app.get('/',(req,res)=> res.json({msg:"helloasdasd"+apiKeyAsString}));
-
+app.use(router);
 
 app.listen(PORT,{PORT});
 console.log("Listening...");
