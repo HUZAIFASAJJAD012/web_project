@@ -7,9 +7,10 @@ import bodyParser from "body-parser";
 import "./connection.js";
 import mongoose from "mongoose";
 import {PORT,apiKey} from "./config.js";
+import login from "./routes/login.js";
 const app = express();
 const apiKeyAsString = String(apiKey);
-import router from "./routes/signup.js";
+
 //connection 
 
 mongoose.set("strictQuery", true);
@@ -22,8 +23,7 @@ app.use(bodyParser.json( { extended: true } ));
 
 app.use(bodyParser.urlencoded ( { extended: true } ));
 
-
-app.use(router);
+app.use(login);
 
 app.listen(PORT,{PORT});
 console.log("Listening...");

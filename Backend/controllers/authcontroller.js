@@ -1,32 +1,7 @@
-const authcontroller={
-
-
-async Login(){
 
 
 
-
-
-
-
-
-},
-async signup(){
-
-
-
-
-
-
-
-},
-
-
-
-
-
-
-
-
-}
-module.exports=authcontroller;
+    export const postlogin=async(req,res)=>{
+        
+        
+        }
